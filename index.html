@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Moving Image Effects</title>
+  <style type="text/css">
+    body {
+      min-height: 10000vh;
+    }
+
+    #scroll {
+      position: fixed;
+      top: 0;
+    }
+
+    #scrollingImage {
+      position: fixed;
+      top: 50px;
+      width: 375px;
+      height: 200px;
+      background-image: url('./scroll.png');
+    }
+
+    #flippingImage {
+      position: fixed;
+      top: 300px;
+      width: 375px;
+      height: 200px;
+      background-image: url('./scroll.png');
+    }
+  </style>
+</head>
+<body>
+  <p id="scroll">0</p>
+
+  <div id="scrollingImage" />
+  <div id="flippingImage" />
+</body>
+<script type="text/javascript">
+  const text = document.getElementById('scroll');
+  const scrollingImage = document.getElementById('scrollingImage');
+  const flippingImage = document.getElementById('flippingImage');
+  const imageWidth = 375;
+
+  window.onscroll = function() {
+    let yPos = window.scrollY;
+    text.innerHTML = yPos;
+    scrollingImage.style.backgroundPosition = `calc(-${imageWidth}px * ${yPos / 1000}) 0`;
+    flippingImage.style.backgroundPosition = `calc(-${imageWidth}px * ${Math.floor(yPos / (imageWidth * 2))}) 0`;
+  }
+</script>
+</html>
