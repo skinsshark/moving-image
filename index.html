@@ -47,5 +47,22 @@
     scrollingImage.style.backgroundPosition = `calc(-${imageWidth}px * ${yPos / 1000}) 0`;
     flippingImage.style.backgroundPosition = `calc(-${imageWidth}px * ${Math.floor(yPos / (imageWidth * 2))}) 0`;
   }
+
+  window.onload = function() {
+    var oReq = new XMLHttpRequest();
+    var myJSONStr = payload = {
+      "pw": "testing"
+    };
+
+    oReq.addEventListener("load", reqListener);
+    oReq.open("POST", "https://sz-directory.herokuapp.com/pw", true);
+    oReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    oReq.send(JSON.stringify(myJSONStr));
+  }
+
+  function reqListener () {
+    console.log('yo')
+    console.log('asdf',this.responseText);
+  }
 </script>
 </html>
